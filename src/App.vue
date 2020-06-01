@@ -1,28 +1,29 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+v-app
+  main-navigation(v-model="drawerVisibility")
+  v-app-bar.text-center(app absolute dark)
+    v-app-bar-nav-icon(@click="moveDrawer")
+    v-toolbar-title Spotify Integration Project
+
+  v-content
+    router-view
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MainNavigation from '@/components/sidebars/MainNavigation.vue'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MainNavigation
+  },
+  data() {
+    return {
+      drawerVisibility: false
+    }
+  },
+  methods: {
+    moveDrawer() {
+      this.drawerVisibility = !this.drawerVisibility
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
